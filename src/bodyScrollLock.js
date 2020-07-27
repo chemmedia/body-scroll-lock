@@ -72,7 +72,7 @@ const setOverflowHidden = (options?: BodyScrollOptions) => {
   // If previousBodyPaddingRight is already set, don't set it again.
   if (previousBodyPaddingRight === undefined) {
     const reserveScrollBarGap = !!options && options.reserveScrollBarGap === true;
-    const scrollBarGap = window.innerWidth - document.documentElement.clientWidth;
+    const scrollBarGap = Math.min(window.innerWidth, window.outerWidth) - document.documentElement.clientWidth;
 
     if (reserveScrollBarGap && scrollBarGap > 0) {
       previousBodyPaddingRight = document.body.style.paddingRight;
