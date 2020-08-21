@@ -39,7 +39,7 @@ let initialClientY: number = -1;
 let previousBodyOverflowSetting;
 let previousBodyPaddingRight;
 
-const windowWidth = function getWindowWidth() {
+const getWindowWidth = () => {
   let outerWidth = window.innerWidth;
 
   try {
@@ -49,7 +49,7 @@ const windowWidth = function getWindowWidth() {
   }
 
   return Math.min(outerWidth, window.innerWidth);
-}();
+};
 
 // returns true if `el` should be allowed to receive touchmove events.
 const allowTouchMove = (el: EventTarget): boolean =>
@@ -84,7 +84,7 @@ const setOverflowHidden = (options?: BodyScrollOptions) => {
   // If previousBodyPaddingRight is already set, don't set it again.
   if (previousBodyPaddingRight === undefined) {
     const reserveScrollBarGap = !!options && options.reserveScrollBarGap === true;
-    const scrollBarGap = windowWidth - document.documentElement.clientWidth;
+    const scrollBarGap = getWindowWidth() - document.documentElement.clientWidth;
 
     if (reserveScrollBarGap && scrollBarGap > 0) {
       previousBodyPaddingRight = document.body.style.paddingRight;
